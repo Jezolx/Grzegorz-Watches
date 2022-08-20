@@ -1,0 +1,108 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid rgb(220, 220, 220);
+}
+.item_discription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+.discription {
+  width: 60%;
+  margin-left: 10px;
+  white-space: none;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+
+.buy_button {
+  padding: 5px 10px;
+  background-color: rgb(240, 240, 240);
+  border: 2px solid rgb(220, 220, 220);
+  border-radius: 50%;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s;
+  font-family: "Dancing Script";
+}
+.buy_button:hover {
+  background-color: rgb(220, 220, 220);
+  transition: background-color 0.5s;
+}
+
+.item_picture {
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  min-width: 350px;
+  border-bottom: 3px solid rgb(220, 220, 220);
+}
+
+.side_button {
+  height: 70px;
+  width: 70px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(220, 220, 220);
+  background-color: rgb(240, 240, 240);
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: 5px;
+  font-family: "Dancing Script";
+}
+.side_button:hover {
+  background-color: rgb(220, 220, 220);
+  transition: background-color 0.5s;
+}
+.price {
+  margin-right: 10px;
+  white-space: none;
+  flex-shrink: 0;
+}
+.cart_placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(220, 220, 220);
+  position: relative;
+}
+.cart_img {
+  width: 40px;
+  height: 40px;
+}
+.user_menu {
+  margin-right: 10px;
+}
+.NoInCart {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+}

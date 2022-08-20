@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grzegorz Watches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="general.css" />
+    <link rel="stylesheet" href="content.css" />
+  </head>
+  <body>
+    <script src="content.js"></script>
+    <script src="cart.js"></script>
+    <div class="top_menu">
+      <div class="logo">Grzegorz Watches</div>
+      <div class="user_menu">
+        <a href="cart.html">
+          <div id="cart" class="cart_placeholder">
+            <img class="cart_img" src="image/cart.png" alt="Your Cart" />
+            <div class="NoInCart" id="NoInCart"></div>
+          </div>
+        </a>
+        <div id="user"></div>
+        <div id="log"></div>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="side_menu" id="side_menu"></div>
+      <div class="content" id="content"></div>
+    </div>
+    <div class="bottom_menu">Created by Grzegorz Jeżowski in 2022</div>
+    <script>
+      SideMenuRender();
+      DisplayItems();
+      CartUpDate();
+    </script>
+  </body>
+</html>

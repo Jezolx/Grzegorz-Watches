@@ -1,0 +1,35 @@
+.item_pic {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-left: 40px;
+  font-size: 25px;
+}
+.holder {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.title {
+  margin-bottom: 20px;
+}
+.pic {
+  margin-right: 20px;
+}
+.disc {
+  width: 10%;
+}
+
+.pr {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 50px;
+  width: 150px;
+  margin-right: 20px;
+}
