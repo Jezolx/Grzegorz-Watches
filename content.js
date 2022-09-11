@@ -1,72 +1,25 @@
 
 items =[
-    {picture:"image/0.jpg",
-    discription:"Zegarek 0",
-    price:"250",
-    id:"Slava"
-    }
-    ,    {picture:"image/1.jpg",
-    discription:"Zegarek 1",
-    price:"250",
-    id:"Luch"
-    }
-    ,    {picture:"image/2.jpg",
-    discription:"Zegarek 2",
-    price:"250",
-    id:"Vostoc"
-    }
-    ,    {picture:"image/3.jpg",
-    discription:"Zegarek 3",
-    price:"250",
-    id:"Luch"
-    }
-    ,    {picture:"image/4.jpg",
-    discription:"Zegarek 4",
-    price:"250",
-    id:"Slava"
-    }
-    ,    {picture:"image/5.jpg",
-    discription:"Zegarek 5",
-    price:"250",
-    id:"Poljot"
-    }
-    ,    {picture:"image/6.jpg",
-    discription:"Zegarek 6",
-    price:"1250",
-    id:"Poljot"
-    }
-    ,    {picture:"image/5.jpg",
-    discription:"Zegarek 5",
-    price:"250",
-    id:"Poljot"
-    }
-    ,    {picture:"image/6.jpg",
-    discription:"Zegarek 6",
-    price:"1250",
-    id:"Poljot"
-    }
-    ,    {picture:"image/2.jpg",
-    discription:"Zegarek 2",
-    price:"250",
-    id:"Vostoc"
-    },
-    {picture:"image/0.jpg",
-    discription:"Zegarek 0",
-    price:"250",
-    id:"Slava"
-    }
-    ,    {picture:"image/1.jpg",
-    discription:"Zegarek 1",
-    price:"250",
-    id:"Luch"
-    }
+    {picture:"image/0.jpg",discription:"Zegarek 0",price:"250",id:"Slava",id2:"z.0"},    
+    {picture:"image/1.jpg",discription:"Zegarek 1",price:"250",id:"Luch",id2:"z.1"},
+    {picture:"image/2.jpg",discription:"Zegarek 2",price:"250",id:"Vostoc",id2:"z.2"},
+    {picture:"image/3.jpg",discription:"Zegarek 3",price:"250",id:"Luch",id2:"z.3"}, 
+    {picture:"image/4.jpg",discription:"Zegarek 4",price:"250",id:"Slava",id2:"z.4"},
+    {picture:"image/5.jpg",discription:"Zegarek 5",price:"250",id:"Poljot",id2:"z.5"},
+    {picture:"image/6.jpg",discription:"Zegarek 6",price:"1250",id:"Poljot",id2:"z.6"},
+    {picture:"image/5.jpg",discription:"Zegarek 5",price:"250",id:"Poljot",id2:"z.7"},
+    {picture:"image/6.jpg",discription:"Zegarek 6",price:"1250",id:"Poljot",id2:"z.8"},
+    {picture:"image/2.jpg",discription:"Zegarek 2",price:"250",id:"Vostoc",id2:"z.9"},
+    {picture:"image/0.jpg",discription:"Zegarek 0",price:"250",id:"Slava",id2:"z.10"},
+    {picture:"image/1.jpg",discription:"Zegarek 1",price:"250",id:"Luch",id2:"z.11"}
 ]
 let database = items;
-
+let side=items
+let filter_on=false;
 function reset(){
-    items=database;
     document.getElementById("content").innerHTML="";
-    DisplayItems()
+    DisplayItems(items)
+    filter_on=false;
 }
 
 let CounterItem = 0
@@ -102,14 +55,14 @@ function InputItem(element){
     document.getElementById("price"+(CounterItem-1)).innerHTML = element.price+" pln";
     let button = document.createElement("button");
     button.setAttribute("class","buy_button");
-    button.setAttribute("id",(CounterItem-1))
+    button.setAttribute("id",element.id2)
     button.onclick=buy;
     button.innerText = "Buy"
     document.getElementById("buy"+(CounterItem-1)).appendChild(button);
 }
 
 // funkcja do szybkiego generowania określonej ilości przedmiotów na stronie
-function DisplayItems(){
+function DisplayItems(items){
     CounterItem=0;
     items.forEach(function (element) {
         ItemRender();
@@ -119,19 +72,18 @@ function DisplayItems(){
 
 // pobiera mi z itemów ich Id i robi z nich listę unikatów, to się będzie wyświetlać na bocznym menu i po tym będzie się filtrować strona i wyświetlać tylko 
 // te itemy które będą pasowały do ustawień filtra
-    let side_menu_positons=[];
-    let i =0;
-function side_menu_list () {
-    side_menu_positons=[]
+let side_menu_positions=undefined;
+function side_menu_list (side) {
     i=0;
-    for (item in items){
-    side_menu_positons.push(items[i].id);
+    side_menu_positions=[];
+    for (item in side){
+    side_menu_positions.push(side[i].id);
             i=i+1;
     }
-    side_menu_positons = [...new Set(side_menu_positons)];
-    side_menu_positons.sort().reverse()}
+    side_menu_positions = [...new Set(side_menu_positions)];
+    side_menu_positions.sort().reverse()}
 
-    side_menu_list();
+    side_menu_list(side);
 
 // ta część wyświetla listę z boku po id elementów
 function div_side(element)
@@ -144,7 +96,7 @@ document.getElementById(element).innerText = element;}
 
 
 function SideMenuRender(){
-side_menu_positons.forEach(function(element){div_side(element);})
+side_menu_positions.forEach(function(element){div_side(element);})
 let item = document.createElement("button");
 item.setAttribute("class","side_button");
 item.onclick=reset;
@@ -157,15 +109,15 @@ function Filter_by_id(event){
 set_filter = event.target.id;
 ItemFilterA(set_filter);
 }
-
+let display  = undefined;
 function ItemFilterA(element){
     ItemFilter(element)
     document.getElementById("content").innerHTML="";
-    DisplayItems()
-    items=database;
+    DisplayItems(display)
 }
 function ItemFilter(filt) {
-items = items.filter(function (item) {
+    filter_on=true;
+    display = items.filter(function (item) {
     if (item.id === filt) {
       return true;
     } else {
@@ -175,15 +127,19 @@ items = items.filter(function (item) {
 
 // przyciks kup usuwa z listy itemów i dodaje go do listy itemów kupionych które będą wyświetlowne w koszyku
 let bought = [];
-
+let to_delete= undefined;
 function buy(event){
     let buy_id = event.target.id;
-    bought.push(items[buy_id]);
-    items.splice(buy_id,1);
+    items.forEach(function(element){
+        if (element.id2===buy_id){bought.push(element)
+        to_delete = items.indexOf(element)}
+    });
+    items.splice(to_delete,1);
+    side=items;
     document.getElementById("content").innerHTML="";
-    DisplayItems();
+    if(display.length>1){if(filter_on) {ItemFilterA(set_filter)} else {DisplayItems(items)}}else{DisplayItems(items)};
     document.getElementById("side_menu").innerHTML="";
-    side_menu_list ();
+    side_menu_list (side);
     SideMenuRender();
     CartUpDate();
     bought_number();
