@@ -1,3 +1,4 @@
+
 items =[
     {picture:"image/0.jpg",discription:"Zegarek 0",price:"250",id:"Slava",id2:"z.0"},    
     {picture:"image/1.jpg",discription:"Zegarek 1",price:"250",id:"Luch",id2:"z.1"},
@@ -14,14 +15,6 @@ items =[
 ]
 let database = items;
 let side=items
-let filter_on=false;
-let side_menu_positions=undefined;
-let CounterItem = 0;
-let set_filter;
-let display  = [];
-let bought = [];
-let boughtnumber = 0
-let to_delete= undefined;
 
 // function ItemCheck(){
 //     if (items===JSON.parse(sessionStorage.getItem("items"))){
@@ -32,6 +25,14 @@ let to_delete= undefined;
 
 // ItemCheck()
 
+let filter_on=false;
+function reset(){
+    document.getElementById("content").innerHTML="";
+    DisplayItems(items)
+    filter_on=false;
+}
+
+let CounterItem = 0
 // tworzy div o określonej nazwie klasy = attribute we wskazanym miejscu = place
 function create_div(attribute,place){
     let item = document.createElement("div");
@@ -71,11 +72,17 @@ function InputItem(element){
 }
 
 // funkcja do szybkiego generowania określonej ilości przedmiotów na stronie
-
+function DisplayItems(items){
+    CounterItem=0;
+    items.forEach(function (element) {
+        ItemRender();
+        InputItem(element);
+    });
+    }
 
 // pobiera mi z itemów ich Id i robi z nich listę unikatów, to się będzie wyświetlać na bocznym menu i po tym będzie się filtrować strona i wyświetlać tylko 
 // te itemy które będą pasowały do ustawień filtra
-
+let side_menu_positions=undefined;
 function side_menu_list (side) {
     i=0;
     side_menu_positions=[];
@@ -97,34 +104,22 @@ item.onclick=Filter_by_id;
 document.getElementById("side_menu").appendChild(item);
 document.getElementById(element).innerText = element;}
 
-function reset(){
-    document.getElementById("content").innerHTML="";
-    DisplayItems(items)
-    filter_on=false;
+
+function SideMenuRender(){
+side_menu_positions.forEach(function(element){div_side(element);})
+let item = document.createElement("button");
+item.setAttribute("class","side_button");
+item.onclick=reset;
+item.innerText="All watches";
+document.getElementById("side_menu").appendChild(item);
 }
-
-function CartUpDate(){
-    if (bought===JSON.parse(localStorage.getItem("bought"))){
-        return true;
-    }else {localStorage.setItem("bought", JSON.stringify(bought))}
-}
-
-function bought_number() {
-boughtnumber = bought.length};
-
-function NoInCart(){
-if (boughtnumber>0){
-    document.getElementById("NoInCart").innerText = boughtnumber;
-    document.getElementById("NoInCart").style.display="flex";
-}}
-
-
+let set_filter;
 // filtrowanie przyciskami w boczynym lewym menu
 function Filter_by_id(event){
 set_filter = event.target.id;
 ItemFilterA(set_filter);
 }
-
+let display  = [];
 function ItemFilterA(element){
     ItemFilter(element)
     document.getElementById("content").innerHTML="";
@@ -140,17 +135,9 @@ function ItemFilter(filt) {
     }
   });}
 
-
-
-function DisplayItems(items){
-    CounterItem=0;
-    items.forEach(function (element) {
-        ItemRender();
-        InputItem(element);
-    });
-    }
-
-
+// przyciks kup usuwa z listy itemów i dodaje go do listy itemów kupionych które będą wyświetlowne w koszyku
+let bought = [];
+let to_delete= undefined;
 function buy(event){
     let buy_id = event.target.id;
     items.forEach(function(element){
@@ -168,14 +155,19 @@ function buy(event){
     CartUpDate();
     bought_number();
     NoInCart();
-}    
+}
 
-function SideMenuRender(){
-    side_menu_positions.forEach(function(element){div_side(element);})
-    let item = document.createElement("button");
-    item.setAttribute("class","side_button");
-    item.onclick=reset;
-    item.innerText="All watches";
-    document.getElementById("side_menu").appendChild(item);
-    }
-    
+function CartUpDate(){
+    if (bought===JSON.parse(localStorage.getItem("bought"))){
+        return true;
+    }else {localStorage.setItem("bought", JSON.stringify(bought))}
+}
+let boughtnumber = 0
+function bought_number() {
+boughtnumber = bought.length};
+
+function NoInCart(){
+if (boughtnumber>0){
+    document.getElementById("NoInCart").innerText = boughtnumber;
+    document.getElementById("NoInCart").style.display="flex";
+}}

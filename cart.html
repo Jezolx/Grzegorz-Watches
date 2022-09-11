@@ -19,6 +19,7 @@
     />
     <link rel="stylesheet" href="general.css" />
     <link rel="stylesheet" href="cart.css" />
+    <link rel="stylesheet" href="content.css" />
   </head>
   <body>
     <script src="content.js"></script>
@@ -26,7 +27,12 @@
     <div class="top_menu">
       <div class="logo">Grzegorz Watches</div>
       <div class="user_menu">
-        <div id="cart"></div>
+        <a href="index.html">
+          <div id="cart" class="cart_placeholder">
+            <img class="cart_img" src="image/back.png" alt="Your Cart" />
+            <div class="NoInCart" id="NoInCart"></div>
+          </div>
+        </a>
         <div id="user"></div>
         <div id="log"></div>
       </div>
@@ -37,7 +43,7 @@
     </div>
     <div class="bottom_menu">Created by Grzegorz Jeżowski in 2022</div>
     <script>
-      DisplayItems1();
+      DisplayItems1(to_buy);
     </script>
   </body>
 </html>

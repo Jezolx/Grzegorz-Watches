@@ -1,0 +1,102 @@
+body {
+  margin: 0px;
+  /* need to be set exact the same as heighti in .top_menu below */
+  padding-top: 60px;
+  /* need to be set exact the same as heighti in .bottom_menu below */
+  padding-bottom: 25px;
+  /* need to be set exact the same as width in .side_menu */
+  padding-left: 100px;
+  font-family: "Dancing Script", Roboto, Arial;
+}
+
+.top_menu {
+  position: fixed;
+  top: 0px;
+  right: 40px;
+  left: 15px;
+  /* height is coresponding to padding-top in body above, need to be setted same way to keep appriopriate layout */
+  height: 70px;
+  border-bottom: 2px solid rgb(220, 220, 220);
+  border-right: 2px solid rgb(220, 220, 220);
+  border-left: 2px solid rgb(220, 220, 220);
+  background-color: rgb(240, 240, 240);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.middle {
+  display: flex;
+  flex-direction: row;
+}
+.side_menu {
+  position: fixed;
+  left: 0px;
+  /* need to be set exact the same as heighti in .top_menu below */
+  top: 50px;
+  /* need to be set exact the same as heighti in .bottom_menu below */
+  bottom: 25px;
+  /* need to be set exact the same as padding-left in body */
+  width: 100px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 35px;
+}
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  column-gap: 20px;
+  row-gap: 20px;
+  padding: 40px;
+}
+.bottom_menu {
+  position: fixed;
+  bottom: 0px;
+  right: 40px;
+  left: 140px;
+  /* height is coresponding to padding-bottom in body above, need to be setted same way to keep appriopriate layout */
+  height: 25px;
+  border-top: 2px solid rgb(220, 220, 220);
+  border-right: 2px solid rgb(220, 220, 220);
+  border-left: 2px solid rgb(220, 220, 220);
+  background-color: rgb(240, 240, 240);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  display: flex;
+  justify-content: right;
+  font-size: 20px;
+}
+
+.logo {
+  font-size: 45px;
+  font-weight: bold;
+  padding-left: 125px;
+  display: flex;
+  flex-shrink: 0;
+}
+@media (max-width: 2000px) {
+  .content {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1620px) {
+  .content {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 1250px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 870px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
